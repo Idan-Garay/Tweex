@@ -1,0 +1,41 @@
+{
+  "name": "tweex",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "prettier --check . && eslint ./src --fix && next build",
+    "build:local": "prettier --write . && eslint ./src --fix && next build",
+    "start": "next start",
+    "lint": "prettier --check . && eslint ./src",
+    "format": "prettier --write .",
+    "prepare": "husky install",
+    "pre-commit": "pnpx lint-staged",
+    "test": "vitest related"
+  },
+  "dependencies": {
+    "lint-staged": "15.0.2",
+    "next": "13.5.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.6",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-tailwindcss": "^3.13.0",
+    "husky": "^8.0.3",
+    "postcss": "^8.4.31",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.6",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5",
+    "vitest": "^0.34.6"
+  }
+}
