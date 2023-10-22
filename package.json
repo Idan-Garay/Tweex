@@ -14,9 +14,9 @@
     "test": "vitest related"
   },
   "prisma": {
-    "seed": "pnpx ts-node --compiler-options {\"module\":\"CommonJS\"} backend/prisma/seed.ts",
-    "push": "pnpx prisma db push --schema='backend/prisma/schema.prisma'",
-    "reset": "pnpx prisma migrate reset --schema='backend/prisma/schema.prisma'"
+    "seed": "pnpx ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+    "push": "pnpx prisma db push",
+    "reset": "pnpx prisma migrate reset"
   },
   "dependencies": {
     "@prisma/client": "^5.4.2",
