@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call */
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 declare global {
   // eslint-disable-next-line no-var
@@ -8,7 +8,7 @@ declare global {
 
 let prisma: PrismaClient;
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   prisma = new PrismaClient();
 } else {
   if (!global.prisma) {
