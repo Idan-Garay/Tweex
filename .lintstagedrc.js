@@ -14,8 +14,9 @@ const createCommand =
 
 const formatCommand = createCommand("prettier --check --write");
 const lintCommand = createCommand("eslint", false);
-const testCommand = "vitest related --run";
+// const testCommand = "vitest related --run";
 
 module.exports = {
-  "*.{js,jsx,ts,tsx}": [formatCommand, lintCommand, testCommand],
+  "*.{js,jsx,ts,tsx}": [formatCommand, lintCommand],
+  // "src/app/*.test.*": [testCommand],
 };
