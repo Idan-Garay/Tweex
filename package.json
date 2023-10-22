@@ -13,14 +13,21 @@
     "pre-commit": "pnpx lint-staged",
     "test": "vitest related"
   },
+  "prisma": {
+    "seed": "pnpx ts-node --compiler-options {\"module\":\"CommonJS\"} backend/prisma/seed.ts",
+    "push": "pnpx prisma db push --schema='backend/prisma/schema.prisma'",
+    "reset": "pnpx prisma migrate reset --schema='backend/prisma/schema.prisma'"
+  },
   "dependencies": {
+    "@prisma/client": "^5.4.2",
     "lint-staged": "15.0.2",
     "next": "13.5.6",
+    "prisma": "^5.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.8.7",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
@@ -35,7 +42,8 @@
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2",
     "vitest": "^0.34.6"
   }
 }
