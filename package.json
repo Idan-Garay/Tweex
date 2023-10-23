@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prettier --check --write . && eslint ./src ./backend --fix && next build",
+    "build": "prettier --check --write . && eslint ./src ./backend --fix && prisma generate && next build",
     "build:local": "prettier --write . && eslint ./src --fix && next build",
     "start": "next start",
     "lint": "prettier --check . && eslint ./src",
