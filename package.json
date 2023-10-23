@@ -5,18 +5,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "prettier --check --write . && eslint ./src ./backend --fix && prisma generate && next build",
-    "build:local": "prettier --write . && eslint ./src --fix && next build",
     "start": "next start",
-    "lint": "prettier --check . && eslint ./src",
     "format": "prettier --write .",
     "prepare": "husky install",
     "pre-commit": "pnpx lint-staged",
-    "test": "vitest related"
-  },
-  "prisma": {
-    "seed": "pnpx ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
-    "push": "pnpx prisma db push",
-    "reset": "pnpx prisma migrate reset"
+    "test": "vitest related",
+    "prisma:push": "pnpx prisma db push",
+    "prisma:seed": "pnpx ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+    "prisma:reset": "pnpx prisma migrate reset",
+    "prisma:generate": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.4.2",
