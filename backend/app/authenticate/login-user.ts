@@ -1,13 +1,16 @@
 import prisma from "../../_lib/prisma";
 
-export default async function loginUser(data: { email: string; name: string }) {
+export default async function loginUser(data: {
+  email: string;
+  username: string;
+}) {
   const user = await prisma.user.findUnique({
     where: {
       email: data.email,
-      name: data.name,
+      username: data.username,
     },
   });
-
+  console.log("user", user);
   if (!user) {
     return {
       error: {

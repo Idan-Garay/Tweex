@@ -13,7 +13,7 @@ const createCommand =
 // const buildEslintCommand = createCommand("next lint --file");
 
 const formatCommand = createCommand("prettier --check --write");
-const lintCommand = createCommand("eslint", false);
+const lintCommand = createCommand("eslint --fix", false);
 // const testCommand = "vitest related --run";
 
 module.exports = {
