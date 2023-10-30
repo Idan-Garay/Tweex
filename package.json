@@ -8,7 +8,7 @@
     "start": "next start",
     "format": "prettier --write .",
     "prepare": "husky install",
-    "pre-commit": "pnpx lint-staged",
+    "pre-commit": "npx lint-staged",
     "test": "vitest related"
   },
   "prisma": {
