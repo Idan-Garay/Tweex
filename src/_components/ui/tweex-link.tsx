@@ -5,11 +5,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 // import type of Next Link component
 
-const linkVariants = cva("whitespace-nowrap text-sm", {
+const linkVariants = cva("whitespace-nowrap ", {
   variants: {
     variant: {
       default: "text-secondary hover:underline",
-      ghost: "text-primary/30 hover:underline",
+      ghost: "text-sm text-primary/30 hover:underline",
+      button: "text-sm text-primary/30 hover:underline",
     },
   },
   defaultVariants: {
