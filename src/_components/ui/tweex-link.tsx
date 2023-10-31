@@ -2,7 +2,7 @@ import { cn } from "@/_lib/utils";
 import Link from "next/link";
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-
+import { buttonVariants } from "./button";
 // import type of Next Link component
 
 const linkVariants = cva("whitespace-nowrap ", {
@@ -10,7 +10,7 @@ const linkVariants = cva("whitespace-nowrap ", {
     variant: {
       default: "text-secondary hover:underline",
       ghost: "text-sm text-primary/30 hover:underline",
-      button: "text-sm text-primary/30 hover:underline",
+      button: buttonVariants({ variant: "outline" }),
     },
   },
   defaultVariants: {

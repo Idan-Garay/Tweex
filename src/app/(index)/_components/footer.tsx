@@ -42,7 +42,7 @@ export const Footer = () => {
         { title: "Directory", link: "https://twitter.com/i/directory/profiles" },
         { title: "Settings", link: "https://twitter.com/settings" },
       ];
-    return <footer className="mt-24 flex min-h-fit flex-wrap items-center  justify-center gap-2 p-4 py-2 text-accent-foreground">
+    return <footer className=" flex min-h-fit flex-wrap items-center  justify-center gap-2 p-4 py-2 text-accent-foreground">
     {footerLinks.map(({ title, link }) => (
       <TweexLink variant="ghost" key={title} href={link} className="">
         {title}
