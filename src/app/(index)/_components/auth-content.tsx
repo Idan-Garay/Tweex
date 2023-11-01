@@ -59,7 +59,12 @@ export const AuthContent = () => {
         <span className="block text-lg font-bold">
           Already have an account?
         </span>
-        <TweexLink variant="button" href="/i/flow">
+        <TweexLink
+          prefetch={false}
+          shallow={true}
+          variant="button"
+          href="/login"
+        >
           Sign in
         </TweexLink>
       </div>
