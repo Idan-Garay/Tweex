@@ -49,6 +49,9 @@ export const Footer = () => {
           {title}
         </TweexLink>
       ))}
+      <TweexLink variant="ghost" href="#" className="">
+        © 2023 TweeX Corp.
+      </TweexLink>
     </footer>
   );
 };

@@ -4,7 +4,18 @@ import { Input } from "@/_components/ui/input";
 import { TweexLink } from "@/_components/ui/tweex-link";
 import Image from "next/image";
 
-export const Form1 = () => {
+export const Form1 = ({
+  username,
+  handleUsernameChange,
+  nextStep,
+}: {
+  username: string;
+  handleUsernameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  nextStep: () => void;
+}) => {
+  const handleNextClick = () => {
+    if (username.length) nextStep();
+  };
   return (
     <>
       <DialogTitle className="text-3xl font-bold">Sign in to X</DialogTitle>
@@ -39,10 +50,14 @@ export const Form1 = () => {
       <Input
         className="h-14 text-base"
         placeholder="Phone, email, or username"
+        defaultValue={username}
+        onChange={handleUsernameChange}
       />
       <div className="h-6"></div>
 
-      <Button className="font-semibold">Next</Button>
+      <Button onClick={handleNextClick} className="font-semibold">
+        Next
+      </Button>
       <div className="h-6"></div>
 
       <Button variant="outline" className="font-semibold">
