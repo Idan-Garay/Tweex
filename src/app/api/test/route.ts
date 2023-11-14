@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { NextRequest, NextResponse } from "next/server";
+import { PrismaClient, User } from "@prisma/client";
+import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
@@ -24,17 +24,21 @@ const getTweets = async () => {
   return tweets;
 };
 
-const getUser = async (username: string, password: string) => {
+const getUser = async (
+  username: string,
+  password: string,
+): Promise<User | null> => {
   const user = await prisma.user.findUnique({
     where: { username: username },
   });
 
   if (!user) return null;
-  const isPasswordValid = await bcrypt.compare(password, user.password);
+  const typedUser = user;
+  const isPasswordValid = await bcrypt.compare(password, typedUser.password);
   return isPasswordValid ? user : null;
 };
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const users = await getUsers();
   const tweets = await getTweets();
   const user = await getUser("katarinayu", "P@ssw0rd");

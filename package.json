@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "prettier --check --write . && eslint ./src ./backend --fix && prisma generate && next build",
+    "build": "tsc --noEmit --incremental && prettier --check --write . && eslint ./src ./backend --fix && prisma generate && next build",
     "start": "next start",
     "format": "prettier --write .",
     "prepare": "husky install",
-    "pre-commit": "pnpx lint-staged",
+    "pre-commit": "tsc --incremental && npx lint-staged",
+    "ts-lint": "tsc --noEmit --incremental --watch",
     "test": "vitest related"
   },
   "prisma": {

@@ -1,2 +1,4 @@
 .eslintrc.js
+.eslintrc.cjs
 prettier.config.js
+prettier.config.cjs

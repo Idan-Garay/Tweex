@@ -7,6 +7,7 @@
 package-lock.json
 pnpm-lock.yaml
 .env.local
+yarn.lock
 
 # testing
 /coverage
