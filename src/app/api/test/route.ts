@@ -34,6 +34,7 @@ const getUser = async (username: string, password: string) => {
   return isPasswordValid ? user : null;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(request: NextRequest) {
   const users = await getUsers();
   const tweets = await getTweets();
