@@ -97,7 +97,7 @@ model TweetImage {
 
   // Relationships
   tweet   Tweet?   @relation(fields: [tweetId], references: [id])
-  comment Comment? @relation(fields: [commentId], references: [id])
+  comment Comment? @relation(fields: [commentId], references: [id], onDelete:NoAction, onUpdate:NoAction)
 }
 
 // Explicit JOIN table
@@ -145,6 +145,6 @@ model Comment {
   commentImages TweetImage[]
 
   // Self-referencing relationships
-  comment     Comment?  @relation("CommentThread", fields: [commentId], references: [id])
+  comment     Comment?  @relation("CommentThread", fields: [commentId], references: [id], onDelete:NoAction, onUpdate:NoAction)
   subComments Comment[] @relation("CommentThread")
 }
