@@ -11,11 +11,11 @@ export default function Home() {
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    setResult("requesting to api/user/login")
+    setResult("requesting to api/user/login");
     e.preventDefault();
     await fetch("api/user/login", {
       method: "POST",
-      body: JSON.stringify({ email, username:name }),
+      body: JSON.stringify({ email, username: name }),
       headers: {
         "Content-Type": "application/json",
       },
