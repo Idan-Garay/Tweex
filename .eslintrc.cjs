@@ -8,6 +8,7 @@ module.exports = {
     "eslint:recommended",
     "next/core-web-vitals",
     "prettier",
+    "plugin:storybook/recommended"
   ],
   overrides: [
     {

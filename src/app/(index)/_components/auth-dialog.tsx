@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Dialog, DialogContent, DialogTitle } from "@/_components/ui/dialog";
 import { TweexLink } from "@/_components/ui/tweex-link";
-import { Button } from "@/_components/ui/button";
+import { Button } from "@/_components/ui/button/button";
 import { Input } from "@/_components/ui/input";
 import { useSearchParams } from "next/navigation";
 export const AuthDialog = () => {

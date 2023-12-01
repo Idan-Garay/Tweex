@@ -1,4 +1,4 @@
-import { Button } from "@/_components/ui/button";
+import { Button } from "@/_components/ui/button/button";
 import { DialogTitle } from "@/_components/ui/dialog";
 import { Input } from "@/_components/ui/input";
 import { TweexLink } from "@/_components/ui/tweex-link";

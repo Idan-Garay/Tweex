@@ -1,4 +1,4 @@
-import { Button } from "@/_components/ui/button";
+import { Button } from "@/_components/ui/button/button";
 import { TweexLink } from "@/_components/ui/tweex-link";
 import Image from "next/image";
 
