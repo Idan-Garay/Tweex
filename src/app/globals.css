@@ -48,4 +48,37 @@
   input::-webkit-credentials-auto-fill-button {
     margin-right: 1.6rem;
   }
+
+  
+}
+
+.animate {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-300px)
+  }
+  to {
+    transform: translateX(0)
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s normal;
+}
+
+.slideInLeft {
+  animation: slideInLeft 0.3s normal;
 }

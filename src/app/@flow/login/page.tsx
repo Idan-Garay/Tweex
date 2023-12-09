@@ -32,7 +32,7 @@ export default function Login() {
   }, [pathname]);
   return (
     <Dialog defaultOpen open={hasLogin} onOpenChange={handleDialogOpenChange}>
-      <DialogContent className="flex h-full w-full max-w-none items-center justify-center rounded-none sm:max-h-[650px] sm:max-w-[600px] sm:rounded-sm ">
+      <DialogContent className="flex h-full w-full max-w-none items-center justify-center overflow-hidden rounded-none sm:max-h-[650px] sm:max-w-[600px] sm:rounded-sm ">
         <Image
           src="/x-icon.svg"
           alt="x-icon"
@@ -49,13 +49,21 @@ export default function Login() {
             />
           </div>
         )}
-        {step === 1 && (
-          <div className="flex h-full w-full flex-col px-12 py-10 pb-1">
+        {step === 2 && (
+          <div className="animate slideInLeft flex h-full w-full flex-col px-12 py-10 pb-1">
             <Form2
               username={username}
               password={password}
               setPassword={setPassword}
             />
+          </div>
+        )}
+        {step === 1 && (
+          <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-y-6">
+            <div className="loader h-48 w-48 animate-spin rounded-full border-[12px] border-muted border-r-secondary"></div>
+            <p className="text-center text-xl text-muted-foreground">
+              Logging in...
+            </p>
           </div>
         )}
       </DialogContent>
