@@ -1,8 +1,15 @@
+"use client";
 import { Button } from "@/_components/ui/button";
 import { DialogTitle } from "@/_components/ui/dialog";
 import { Input } from "@/_components/ui/input";
+import { Loading } from "@/_components/ui/loading";
 import { TweexLink } from "@/_components/ui/tweex-link";
+import { useToast } from "@/_components/ui/use-toast";
+import { useLoading } from "@/_lib/hooks/use-loading";
 import Image from "next/image";
+import { GoogleSignIn } from "./google-sign-in";
+import { useLocalStorageLoading } from "@/_lib/hooks/use-local-storage-loading";
+import type User from "../../../../../types/user";
 
 export const Form1 = ({
   username,
@@ -13,23 +20,44 @@ export const Form1 = ({
   handleUsernameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   nextStep: () => void;
 }) => {
-  const handleNextClick = () => {
-    if (username.length) nextStep();
+  const { toast } = useToast();
+  const { loading, setLoading } = useLoading();
+  const { ssoLoading } = useLocalStorageLoading();
+  const handleNextClick = async () => {
+    try {
+      if (username.length <= 1) return;
+      setLoading(true);
+      const res = await fetch("/api/user/username-login", {
+        method: "POST",
+        body: JSON.stringify({
+          username: username,
+        }),
+      });
+      setLoading(false);
+      if (res.ok) {
+        const data = (await res.json()) as {
+          success: boolean;
+          message: string;
+          data: User | null;
+        };
+        if (data.success) {
+          nextStep();
+        } else {
+          toast({
+            description: data.message,
+          });
+        }
+      }
+    } catch (e) {
+      setLoading(false);
+      console.log("e", e);
+    }
   };
-  return (
+  return loading === false && ssoLoading === false ? (
     <>
       <DialogTitle className="text-3xl font-bold">Sign in to X</DialogTitle>
       <div className="h-6" />
-      <Button className=" font-normal">
-        <Image
-          src="/google-icon.svg"
-          alt="google-icon"
-          height={24}
-          width={24}
-          className="mr-2"
-        />
-        Sign up with Google
-      </Button>
+      <GoogleSignIn />
       <div className="h-4"></div>
       <Button className="font-semibold">
         <Image
@@ -68,5 +96,7 @@ export const Form1 = ({
         {"Don't have an account? "} <TweexLink href="#">Sign up</TweexLink>
       </span>
     </>
+  ) : (
+    <Loading />
   );
 };
