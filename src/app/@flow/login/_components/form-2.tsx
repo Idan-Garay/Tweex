@@ -4,7 +4,7 @@ import { Input } from "@/_components/ui/input";
 import { InputConceal } from "@/_components/ui/input-conceal";
 import { TweexLink } from "@/_components/ui/tweex-link";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { useToast } from "@/_components/ui/use-toast";
 import { useLoading } from "@/_lib/hooks/use-loading";
 import { Loading } from "@/_components/ui/loading";
@@ -64,11 +64,6 @@ export const Form2 = ({
     setLoading(false);
   };
 
-  useEffect(() => {
-    return () => {
-      console.log("dismounted");
-    };
-  }, []);
   return loading === false ? (
     <>
       <DialogTitle className="text-3xl font-bold">
@@ -82,7 +77,7 @@ export const Form2 = ({
         disabled
       />
       <div className="h-16" />
-      <InputConceal value={password} setValue={setPassword} />
+      <InputConceal />
       <div className="pl-3">
         <TweexLink href="#">Forgot Password?</TweexLink>
       </div>

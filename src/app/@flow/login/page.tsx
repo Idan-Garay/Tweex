@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import { Dialog, DialogContent } from "@/_components/ui/dialog";
 import { usePathname, useRouter } from "next/navigation";
 import { Form1, Form2 } from "./_components";
 import { useEffect, useState } from "react";
-import { useWizardForm } from "./_hooks/useWizardForm";
+import { useWizardForm } from "../_hooks/useWizardForm";
+import { OnboardingDialog } from "../_components";
 
 export default function Login() {
   const router = useRouter();
@@ -31,9 +31,9 @@ export default function Login() {
   useEffect(() => {
     setHasLogin(pathname.includes("login"));
   }, [pathname]);
+  
   return (
-    <Dialog defaultOpen open={hasLogin} onOpenChange={handleDialogOpenChange}>
-      <DialogContent className="flex h-full w-full max-w-none items-center justify-center overflow-hidden rounded-none sm:max-h-[650px] sm:max-w-[600px] sm:rounded-sm ">
+    <OnboardingDialog defaultOpen open={hasLogin} onOpenChange={handleDialogOpenChange}>
         <Image
           src="/x-icon.svg"
           alt="x-icon"
@@ -60,8 +60,6 @@ export default function Login() {
               reset={reset}
             />
           </div>
-        )}
-      </DialogContent>
-    </Dialog>
+        )}</OnboardingDialog>
   );
 }

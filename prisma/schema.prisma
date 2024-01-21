@@ -17,6 +17,13 @@ enum Audience {
   PRIVATE
 }
 
+model EmailCodes {
+  id Int @id @default(autoincrement())
+  email String @unique
+  code String
+  expirationDate DateTime
+}
+
 model User {
   id              Int       @id @default(autoincrement())
   username        String    @unique
@@ -39,8 +46,8 @@ model User {
 model UserDetail {
   id          Int       @id @default(autoincrement())
   userId      Int       @unique
-  firstName   String
-  lastName    String
+  firstName   String?
+  lastName    String?
   bio         String?
   phoneNumber String?
   profile     String?

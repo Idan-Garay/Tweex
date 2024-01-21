@@ -5,15 +5,22 @@ export default async function loginUser(data: {
   username: string;
 }) {
   try {
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findFirst({
       where: {
-        email: data.email,
-        username: data.username,
-      }, 
+        OR: [
+          {
+            email: data.email,
+          },
+          {
+            username: data.username,
+          },
+        ],
+      },
     });
+
     if (user) {
-      const { username, email } = user;
-      return { username, email };
+      const {id, username, email, isEmailVerified } = user;
+      return {id, username, email, isEmailVerified };
     }
     return user;
   } catch (e) {

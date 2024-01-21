@@ -57,7 +57,7 @@ export const Form1 = ({
     <>
       <DialogTitle className="text-3xl font-bold">Sign in to X</DialogTitle>
       <div className="h-6" />
-      <GoogleSignIn />
+      <GoogleSignIn setLoading={setLoading} />
       <div className="h-4"></div>
       <Button className="font-semibold">
         <Image
@@ -93,7 +93,7 @@ export const Form1 = ({
       </Button>
       <div className="h-12"></div>
       <span className="block text-base text-muted-foreground">
-        {"Don't have an account? "} <TweexLink href="#">Sign up</TweexLink>
+        {"Don't have an account? "} <TweexLink href="/register">Sign up</TweexLink>
       </span>
     </>
   ) : (

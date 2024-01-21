@@ -11,6 +11,7 @@ const linkVariants = cva("whitespace-nowrap ", {
       default: "text-secondary hover:underline",
       ghost: "text-sm text-primary/30 hover:underline",
       button: buttonVariants({ variant: "outline" }),
+      buttonSecondary: buttonVariants({ variant: "secondary" }),
     },
   },
   defaultVariants: {

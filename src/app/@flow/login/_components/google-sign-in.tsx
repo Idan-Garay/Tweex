@@ -1,23 +1,25 @@
 "use client";
+import { useRouter } from "next/navigation";
 import Script from "next/script";
-import React from "react";
+import React, { useState } from "react";
+export const GoogleSignIn = ({
+  setLoading,
+}: {
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const router = useRouter();
+  const [googleSsoLoading, setGoogleSsoLoading] = useState(true);
 
-// type GoogleBasicProfile = {
-//   getId: () => string;
-//   getName: () => string;
-//   getImageUrl: () => string;
-//   getEmail: () => string;
-// };
-
-export const GoogleSignIn = () => {
   return (
     <>
       <Script
         src="https://accounts.google.com/gsi/client"
+        onLoad={() => {
+          setGoogleSsoLoading(true);
+        }}
         onReady={() => {
           google.accounts.id.initialize({
-            client_id:
-              "623102256831-hdiumbt87vdu57pddomcb418o00fpnol.apps.googleusercontent.com",
+            client_id: process.env.NEXT_PUBLIC_GOOGLE_SSO_CLIENT_ID ?? "",
             callback: handleCredentialResponse,
           });
           google.accounts.id.renderButton(
@@ -41,12 +43,12 @@ export const GoogleSignIn = () => {
               clientId: string;
             };
             const SSO_LOADING = "sso-loading";
-            console.log("google", response);
             try {
               localStorage.setItem(SSO_LOADING, "true");
               window.dispatchEvent(new Event(SSO_LOADING));
+              setLoading(true);
 
-              fetch("/api/user/username-login", {
+              fetch("/api/auth/google", {
                 method: "POST",
                 body: JSON.stringify({
                   credential: response.credential,
@@ -55,10 +57,30 @@ export const GoogleSignIn = () => {
               })
                 .then((res) => {
                   setTimeout(() => {
-                    res.json().then(console.log).catch(console.log);
+                    res
+                      .json()
+                      .then(
+                        (json: {
+                          success: boolean;
+                          data?: { accessToken: string };
+                          message?: string;
+                        }) => {
+                          const accessToken = json.data?.accessToken ?? "";
+                          localStorage.setItem("accessToken", accessToken);
+                          if (res.status === 200) {
+                            router.replace("/home");
+                          } else if (res.status === 201) {
+                            router.replace("/single-sign-on");
+                          }
+                        },
+                      )
+                      .catch(console.log);
                   }, 2000);
                 })
-                .catch(console.log);
+                .catch(console.log)
+                .finally(() => {
+                  setLoading(false);
+                });
             } catch (e) {
               console.log(e);
               return;
@@ -66,12 +88,21 @@ export const GoogleSignIn = () => {
             localStorage.setItem(SSO_LOADING, "false");
             window.dispatchEvent(new Event(SSO_LOADING));
           }
+          setGoogleSsoLoading(false);
         }}
-        onError={(e) => console.log("err google", e)}
+        onError={(e) => {
+          setGoogleSsoLoading(false);
+          console.log("err google", e);
+        }}
         async
       />
 
-      <div id="google_btn"></div>
+      <div className="">
+        <div id="google_btn"></div>
+        {googleSsoLoading && (
+          <div className="mx-auto h-6 w-6 animate-spin rounded-full border-[2px] border-muted border-r-secondary"></div>
+        )}
+      </div>
     </>
   );
 };

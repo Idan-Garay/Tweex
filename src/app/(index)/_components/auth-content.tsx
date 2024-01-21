@@ -40,9 +40,15 @@ export const AuthContent = () => {
           or
         </p>
       </div>
-      <Button variant="secondary" className="mb-2 font-semibold">
+      <TweexLink
+        className="mb-2 font-semibold"
+        prefetch={false}
+        shallow={true}
+        variant="buttonSecondary"
+        href="/register"
+      >
         Create Account
-      </Button>
+      </TweexLink>
       <p className="w-[300px] text-xs text-muted-foreground">
         By signing up, you agree to the{" "}
         <TweexLink href="https://twitter.com/tos">Terms of Service</TweexLink>{" "}
